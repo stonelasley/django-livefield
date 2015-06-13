@@ -35,7 +35,7 @@ class LiveFieldTests(TestCase):
             obj = Person(name=name)
             obj.live = val
             # Again, use 'is' to make sure that we're returning bools.
-            self.assertTrue(obj.live)
+            self.assertFalse(obj.live)
 
     def test_allows_uniqueness_with_many_dead(self):
         first = Person(name='collision')
