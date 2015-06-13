@@ -11,7 +11,7 @@ class LiveField(models.NullBooleanField):  # pylint: disable=no-member
     follows the ANSI SQL standard, and works in both MySQL and Postgres).
 
     """
-    description = u'Soft-deletion status'
+    description = b'Soft-deletion status'
     __metaclass__ = models.SubfieldBase
 
     def __init__(self, *args, **kwargs):
@@ -30,7 +30,7 @@ class LiveField(models.NullBooleanField):  # pylint: disable=no-member
 
     def get_prep_lookup(self, lookup_type, value):
         if lookup_type == 'exact' and not value:
-            msg = u"%(model)s doesn't support filters or excludes with %(field)s=False. Try using %(field)s=None."
+            msg = b"%(model)s doesn't support filters or excludes with %(field)s=False. Try using %(field)s=None.".decode()
             raise TypeError(msg % {'model': self.model.__name__, 'field': self.name})  # pylint: disable=no-member
         return super(LiveField, self).get_prep_lookup(lookup_type, value)
 
