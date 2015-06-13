@@ -30,7 +30,7 @@ class LiveField(models.NullBooleanField):  # pylint: disable=no-member
 
     def get_prep_lookup(self, lookup_type, value):
         if lookup_type == 'exact' and not value:
-            msg = b"%(model)s doesn't support filters or excludes with %(field)s=False. Try using %(field)s=None.".decode()
+            msg = b"%(model)s doesn't support filters or excludes with %(field)s=False. Try using %(field)s=None."
             raise TypeError(msg % {'model': self.model.__name__, 'field': self.name})  # pylint: disable=no-member
         return super(LiveField, self).get_prep_lookup(lookup_type, value)
 
