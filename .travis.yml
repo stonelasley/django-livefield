@@ -11,7 +11,8 @@ env:
   - DJANGO_VERSION_CEILING=1.8 DJANGO_DB_ENGINE=postgres DJANGO_DB_NAME=testdb DJANGO_DB_USER=postgres
   - DJANGO_VERSION_CEILING=1.8 DJANGO_DB_ENGINE=mysql DJANGO_DB_NAME=testdb DJANGO_DB_USER=travis
 install:
-  - pip install -v "Django<$DJANGO_VERSION_CEILING" MySQL-python psycopg2
+  - pip install -v "Django<$DJANGO_VERSION_CEILING" psycopg2
+  - if [[ $TRAVIS_PYTHON_VERSION <= 3.0 ]]; then pip install -v MySQL-python else python3-dev libmysqlclient-dev mysqlclient; fi
   - "pip install -q flake8 pylint pylint-django"
   - "pip install -e ."
 before_script:
