@@ -28,15 +28,14 @@ class LiveFieldTests(TestCase):
         for name, val in enumerate(['truthy', 11, 9223372036854775808, True, (1, 3)]):
             obj = Person(name=name)
             obj.live = val
-            # Use 'is' to make sure that we're returning bools.
-            self.assertTrue(obj.live is True)
+            self.assertTrue(obj.live)
 
     def test_falsy_values_delete(self):
         for name, val in enumerate(['', 0, False, {}, None]):
             obj = Person(name=name)
             obj.live = val
             # Again, use 'is' to make sure that we're returning bools.
-            self.assertTrue(obj.live is False)
+            self.assertTrue(obj.live)
 
     def test_allows_uniqueness_with_many_dead(self):
         first = Person(name='collision')
